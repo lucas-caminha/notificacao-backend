@@ -11,7 +11,7 @@
 	<groupId>br.com.bahia.backend</groupId>
 	<artifactId>notificacao</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>notificacao</name>
 	<description>api rest do projeto de notificações</description>
 	<properties>
