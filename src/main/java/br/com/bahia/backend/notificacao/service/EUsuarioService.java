@@ -19,6 +19,6 @@ public class EUsuarioService {
 
     public EUsuarioDTO cadastrarUsuario(EUsuarioCreateDTO eusuarioCreateDTO){
         EUsuario usuario = objectMapper.convertValue(eusuarioCreateDTO, EUsuario.class);
-        return eUsuarioRepository.save(usuario);
+        return objectMapper.convertValue(eUsuarioRepository.save(usuario), EUsuarioDTO.class);
     }
 }
