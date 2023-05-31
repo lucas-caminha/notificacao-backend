@@ -1,5 +1,9 @@
 package br.com.bahia.backend.notificacao.service;
 
+import br.com.bahia.backend.notificacao.dto.EUsuarioCreateDTO;
+import br.com.bahia.backend.notificacao.dto.EUsuarioDTO;
+import br.com.bahia.backend.notificacao.dto.EUsuarioDeleteDTO;
+import br.com.bahia.backend.notificacao.dto.EUsuarioUpdateDTO;
 import br.com.bahia.backend.notificacao.model.EUsuario;
 import br.com.bahia.backend.notificacao.repository.EUsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,8 +21,23 @@ public class EUsuarioService {
         this.objectMapper = objectMapper;
     }
 
-    public EUsuarioDTO cadastrarUsuario(EUsuarioCreateDTO eusuarioCreateDTO){
+    public EUsuarioDTO getEUsuario(Integer idEUsuario){
+        //
+        return new EUsuarioDTO();
+    }
+
+    public EUsuarioDTO insertEUsuario(EUsuarioCreateDTO eusuarioCreateDTO){
         EUsuario usuario = objectMapper.convertValue(eusuarioCreateDTO, EUsuario.class);
         return objectMapper.convertValue(eUsuarioRepository.save(usuario), EUsuarioDTO.class);
+    }
+
+    public EUsuarioDTO updateEUsuario(EUsuarioUpdateDTO eusuarioUpdateDTO){
+       //
+        return new EUsuarioDTO();
+    }
+
+    public EUsuarioDTO deleteEUsuario(EUsuarioDeleteDTO eusuarioDeleteDTO){
+        //
+        return new EUsuarioDTO();
     }
 }
