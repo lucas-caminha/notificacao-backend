@@ -2,12 +2,13 @@ package br.com.bahia.backend.notificacao.service;
 
 import br.com.bahia.backend.notificacao.dto.EUsuarioCreateDTO;
 import br.com.bahia.backend.notificacao.dto.EUsuarioDTO;
-import br.com.bahia.backend.notificacao.dto.EUsuarioDeleteDTO;
 import br.com.bahia.backend.notificacao.dto.EUsuarioUpdateDTO;
 import br.com.bahia.backend.notificacao.model.EUsuario;
 import br.com.bahia.backend.notificacao.repository.EUsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class EUsuarioService {
@@ -22,22 +23,22 @@ public class EUsuarioService {
     }
 
     public EUsuarioDTO getEUsuario(Integer idEUsuario){
-        //
-        return new EUsuarioDTO();
+        return objectMapper.convertValue(eUsuarioRepository.findById(idEUsuario), EUsuarioDTO.class);
     }
 
     public EUsuarioDTO insertEUsuario(EUsuarioCreateDTO eusuarioCreateDTO){
         EUsuario usuario = objectMapper.convertValue(eusuarioCreateDTO, EUsuario.class);
+        usuario.setDtCriacao(LocalDate.now());
         return objectMapper.convertValue(eUsuarioRepository.save(usuario), EUsuarioDTO.class);
     }
 
-    public EUsuarioDTO updateEUsuario(EUsuarioUpdateDTO eusuarioUpdateDTO){
-       //
-        return new EUsuarioDTO();
+    public EUsuarioDTO updateEUsuario(Integer idEUsuario, EUsuarioUpdateDTO eusuarioUpdateDTO){
+        EUsuario usuario = objectMapper.convertValue(eusuarioUpdateDTO, EUsuario.class);
+        usuario.setCdUsuario(idEUsuario);
+        return objectMapper.convertValue(eUsuarioRepository.save(usuario), EUsuarioDTO.class);
     }
 
-    public EUsuarioDTO deleteEUsuario(EUsuarioDeleteDTO eusuarioDeleteDTO){
-        //
-        return new EUsuarioDTO();
+    public void deleteEUsuario(Integer idEUsuario){
+        eUsuarioRepository.deleteById(idEUsuario);
     }
 }

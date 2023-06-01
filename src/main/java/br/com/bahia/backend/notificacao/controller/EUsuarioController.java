@@ -1,18 +1,17 @@
 package br.com.bahia.backend.notificacao.controller;
 
+import br.com.bahia.backend.notificacao.doc.EUsuarioDoc;
 import br.com.bahia.backend.notificacao.dto.EUsuarioCreateDTO;
 import br.com.bahia.backend.notificacao.dto.EUsuarioDTO;
-import br.com.bahia.backend.notificacao.dto.EUsuarioDeleteDTO;
 import br.com.bahia.backend.notificacao.dto.EUsuarioUpdateDTO;
 import br.com.bahia.backend.notificacao.service.EUsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/eusuario")
-public class EUsuarioController {
+@RequestMapping("eusuario")
+public class EUsuarioController implements EUsuarioDoc {
 
     private final EUsuarioService eUsuarioService;
 
@@ -30,13 +29,14 @@ public class EUsuarioController {
         return new ResponseEntity<>(eUsuarioService.insertEUsuario(eusuarioCreateDTO), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<EUsuarioDTO> updateEUsuario(@RequestBody EUsuarioUpdateDTO eusuarioUpdateDTO) {
-        return new ResponseEntity<>(eUsuarioService.updateEUsuario(eusuarioUpdateDTO), HttpStatus.OK);
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<EUsuarioDTO> updateEUsuario(@PathVariable("id") Integer idEUsuario, @RequestBody EUsuarioUpdateDTO eusuarioUpdateDTO) {
+        return new ResponseEntity<>(eUsuarioService.updateEUsuario(idEUsuario, eusuarioUpdateDTO), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public ResponseEntity<EUsuarioDTO> deleteEUsuario(@RequestBody EUsuarioDeleteDTO eusuarioDeleteDTO) {
-        return new ResponseEntity<>(eUsuarioService.deleteEUsuario(eusuarioDeleteDTO), HttpStatus.OK);
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteEUsuario(@PathVariable("id") Integer idEUsuario) {
+        eUsuarioService.deleteEUsuario(idEUsuario);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
