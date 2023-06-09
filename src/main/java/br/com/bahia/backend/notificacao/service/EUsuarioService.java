@@ -3,7 +3,7 @@ package br.com.bahia.backend.notificacao.service;
 import br.com.bahia.backend.notificacao.dto.EUsuarioCreateDTO;
 import br.com.bahia.backend.notificacao.dto.EUsuarioDTO;
 import br.com.bahia.backend.notificacao.dto.EUsuarioUpdateDTO;
-import br.com.bahia.backend.notificacao.model.EUsuario;
+import br.com.bahia.backend.notificacao.entity.EUsuario;
 import br.com.bahia.backend.notificacao.repository.EUsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
