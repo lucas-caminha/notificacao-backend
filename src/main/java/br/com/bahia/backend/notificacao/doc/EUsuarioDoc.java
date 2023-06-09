@@ -19,7 +19,7 @@ public interface EUsuarioDoc {
     @Operation(summary = "Buscar um usuário", description = "Faz a busca do usuário. ")
     @ApiResponses(
             value = {
-                    @ApiResponse(responseCode = "201", description = "Usuario retornado!"),
+                    @ApiResponse(responseCode = "200", description = "Usuario retornado!"),
                     @ApiResponse(responseCode = "400", description = "Bad Request"),
                     @ApiResponse(responseCode = "404", description = "Not Found"),
                     @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
@@ -45,7 +45,7 @@ public interface EUsuarioDoc {
     @Operation(summary = "Atualizar usuário", description = "Faz a atualização do usuário. ")
     @ApiResponses(
             value = {
-                    @ApiResponse(responseCode = "201", description = "Usuário atualizado!"),
+                    @ApiResponse(responseCode = "200", description = "Usuário atualizado!"),
                     @ApiResponse(responseCode = "400", description = "Bad Request"),
                     @ApiResponse(responseCode = "404", description = "Not Found"),
                     @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
@@ -58,7 +58,7 @@ public interface EUsuarioDoc {
     @Operation(summary = "Deletar usuário", description = "Deleta um usuário. ")
     @ApiResponses(
             value = {
-                    @ApiResponse(responseCode = "201", description = "Usuário deletado!"),
+                    @ApiResponse(responseCode = "200", description = "Usuário deletado!"),
                     @ApiResponse(responseCode = "400", description = "Bad Request"),
                     @ApiResponse(responseCode = "404", description = "Not Found"),
                     @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
