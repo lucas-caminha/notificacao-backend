@@ -15,7 +15,7 @@ public class EUsuarioService {
 
     private final EUsuarioRepository eUsuarioRepository;
     private final ObjectMapper objectMapper;
-
+//    private final PasswordEncoder passwordEncoder;
 
     public EUsuarioService(EUsuarioRepository eUsuarioRepository, ObjectMapper objectMapper) {
         this.eUsuarioRepository = eUsuarioRepository;
@@ -28,14 +28,17 @@ public class EUsuarioService {
 
     public EUsuarioDTO insertEUsuario(EUsuarioCreateDTO eusuarioCreateDTO){
         EUsuario usuario = objectMapper.convertValue(eusuarioCreateDTO, EUsuario.class);
+//        usuario.setSenha(passwordEncoder.encode(eusuarioCreateDTO.getSenha()));
         usuario.setDtCriacao(LocalDate.now());
-        return objectMapper.convertValue(eUsuarioRepository.save(usuario), EUsuarioDTO.class);
+        EUsuario usuarioSalvo = eUsuarioRepository.save(usuario);
+        return objectMapper.convertValue(usuarioSalvo, EUsuarioDTO.class);
     }
 
     public EUsuarioDTO updateEUsuario(Integer idEUsuario, EUsuarioUpdateDTO eusuarioUpdateDTO){
-        EUsuario usuario = objectMapper.convertValue(eusuarioUpdateDTO, EUsuario.class);
-        usuario.setCdUsuario(idEUsuario);
-        return objectMapper.convertValue(eUsuarioRepository.save(usuario), EUsuarioDTO.class);
+        EUsuario usuario = eUsuarioRepository.getReferenceById(idEUsuario);
+        usuario.setNmUsuario(eusuarioUpdateDTO.getNmUsuario());
+        EUsuario usuarioAtualizado = eUsuarioRepository.save(usuario);
+        return objectMapper.convertValue(usuarioAtualizado, EUsuarioDTO.class);
     }
 
     public void deleteEUsuario(Integer idEUsuario){
