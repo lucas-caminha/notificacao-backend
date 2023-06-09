@@ -1,4 +1,4 @@
-package br.com.bahia.backend.notificacao.model;
+package br.com.bahia.backend.notificacao.entity;
 
 import java.time.LocalDate;
 
