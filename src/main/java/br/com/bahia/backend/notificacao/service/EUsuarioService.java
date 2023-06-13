@@ -4,21 +4,25 @@ import br.com.bahia.backend.notificacao.dto.EUsuarioCreateDTO;
 import br.com.bahia.backend.notificacao.dto.EUsuarioDTO;
 import br.com.bahia.backend.notificacao.dto.EUsuarioUpdateDTO;
 import br.com.bahia.backend.notificacao.entity.EUsuario;
+import br.com.bahia.backend.notificacao.exception.GenericException;
 import br.com.bahia.backend.notificacao.repository.EUsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 public class EUsuarioService {
 
     private final EUsuarioRepository eUsuarioRepository;
+    private final PasswordEncoder passwordEncoder;
     private final ObjectMapper objectMapper;
-//    private final PasswordEncoder passwordEncoder;
 
-    public EUsuarioService(EUsuarioRepository eUsuarioRepository, ObjectMapper objectMapper) {
+    public EUsuarioService(EUsuarioRepository eUsuarioRepository, PasswordEncoder passwordEncoder, ObjectMapper objectMapper) {
         this.eUsuarioRepository = eUsuarioRepository;
+        this.passwordEncoder = passwordEncoder;
         this.objectMapper = objectMapper;
     }
 
@@ -28,7 +32,7 @@ public class EUsuarioService {
 
     public EUsuarioDTO insertEUsuario(EUsuarioCreateDTO eusuarioCreateDTO){
         EUsuario usuario = objectMapper.convertValue(eusuarioCreateDTO, EUsuario.class);
-//        usuario.setSenha(passwordEncoder.encode(eusuarioCreateDTO.getSenha()));
+        usuario.setSenha(passwordEncoder.encode(eusuarioCreateDTO.getSenha()));
         usuario.setDtCriacao(LocalDate.now());
         EUsuario usuarioSalvo = eUsuarioRepository.save(usuario);
         return objectMapper.convertValue(usuarioSalvo, EUsuarioDTO.class);
@@ -39,6 +43,10 @@ public class EUsuarioService {
         usuario.setNmUsuario(eusuarioUpdateDTO.getNmUsuario());
         EUsuario usuarioAtualizado = eUsuarioRepository.save(usuario);
         return objectMapper.convertValue(usuarioAtualizado, EUsuarioDTO.class);
+    }
+
+    public Optional<EUsuario> findByLogin (String login) {
+        return eUsuarioRepository.findByEmail(login);
     }
 
     public void deleteEUsuario(Integer idEUsuario){
