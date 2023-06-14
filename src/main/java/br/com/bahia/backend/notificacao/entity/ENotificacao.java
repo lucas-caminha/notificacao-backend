@@ -1,4 +1,4 @@
-package br.com.bahia.backend.notificacao.model;
+package br.com.bahia.backend.notificacao.entity;
 
 import java.time.LocalDate;
 
@@ -43,6 +43,12 @@ public class ENotificacao {
 	}
 	public void setDtCriacao(LocalDate dtCriacao) {
 		this.dtCriacao = dtCriacao;
+	}
+	public EUsuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(EUsuario usuario) {
+		this.usuario = usuario;
 	}
 	
 }
