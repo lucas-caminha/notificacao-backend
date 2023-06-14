@@ -1,19 +1,18 @@
 package br.com.bahia.backend.notificacao.security;
 
-import br.com.bahia.backend.notificacao.entity.EUsuario;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import br.com.bahia.backend.notificacao.entity.EUsuario;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class TokenService {
@@ -22,7 +21,6 @@ public class TokenService {
     private String secret;
     @Value("${jwt.expiration}")
     private String expiration;
-    private static final String CARGOS_CHAVE = "cargos";
 
     public String gerarToken(EUsuario usuario) {
         Date now = Date.valueOf(LocalDate.now());
