@@ -1,4 +1,4 @@
-package br.com.bahia.backend.notificacao.config.config;
+package br.com.bahia.backend.notificacao.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

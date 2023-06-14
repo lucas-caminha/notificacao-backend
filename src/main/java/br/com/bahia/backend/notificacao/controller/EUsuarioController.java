@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("eusuario")
+@RequestMapping("/usuario")
 public class EUsuarioController implements EUsuarioDoc {
 
     private final EUsuarioService eUsuarioService;

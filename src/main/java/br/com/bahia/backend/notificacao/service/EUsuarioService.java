@@ -1,17 +1,18 @@
 package br.com.bahia.backend.notificacao.service;
 
+import java.time.LocalDate;
+import java.util.Optional;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import br.com.bahia.backend.notificacao.dto.EUsuarioCreateDTO;
 import br.com.bahia.backend.notificacao.dto.EUsuarioDTO;
 import br.com.bahia.backend.notificacao.dto.EUsuarioUpdateDTO;
 import br.com.bahia.backend.notificacao.entity.EUsuario;
-import br.com.bahia.backend.notificacao.exception.GenericException;
 import br.com.bahia.backend.notificacao.repository.EUsuarioRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.util.Optional;
 
 @Service
 public class EUsuarioService {
